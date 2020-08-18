@@ -1,0 +1,38 @@
+{
+  "name": "disca",
+  "version": "0.0.0",
+  "description": "A Discord.JS Project Builder",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BumpyBill/disca.git"
+  },
+  "keywords": [
+    "discord",
+    "discord-js",
+    "discord-bot",
+    "discord-project",
+    "discord-project-builder",
+    "discord-api"
+  ],
+  "author": "Bumpy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BumpyBill/disca/issues"
+  },
+  "homepage": "https://github.com/BumpyBill/disca#readme",
+  "bin": {
+    "disca": "dist/bin/cli.js"
+  },
+  "scripts": {
+    "build": "tsc -p ."
+  },
+  "dependencies": {
+    "@types/yargs": "^15.0.5",
+    "chalk": "^4.1.0",
+    "inquirer": "^7.3.3",
+    "yargs": "^15.4.1"
+  },
+  "devDependencies": {
+    "@types/node": "^14.6.0"
+  }
+}
