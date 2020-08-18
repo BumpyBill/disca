@@ -1,6 +1,6 @@
 {
   "name": "disca",
-  "version": "0.0.011",
+  "version": "0.0.012",
   "description": "A Discord.JS Project Builder",
   "repository": {
     "type": "git",
@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "chalk": "^4.1.0",
+    "child_process": "^1.0.2",
     "inquirer": "^7.3.3"
   },
   "devDependencies": {
