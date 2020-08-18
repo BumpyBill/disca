@@ -2,8 +2,10 @@
 
 import chalk from "chalk";
 import { exec } from "child_process";
+import fs from "fs";
+import { join } from "path";
 
-// Title
+var cwd = process.cwd();
 
 var log = console.log;
 const error = chalk.bold.red;
@@ -16,7 +18,7 @@ log(
   )
 );
 log(warning(`You're about to initialize a Disca project in this directory:`));
-log(chalk.bold(`  ${__dirname}`));
+log(chalk.bold(`  ${cwd}`));
 
 var inquirer = require("inquirer");
 
@@ -42,13 +44,48 @@ inquirer
       message: "Features:",
       choices: ["Command Handler"],
     },
+    {
+      type: "password",
+      name: "token",
+      message: "Token:",
+    },
   ])
   .then((answers: any) => {
-    var cwd = process.cwd();
-
     if (answers.language == "JavaScript") {
+      fs.writeFileSync(
+        `${join(cwd, "package.json")}`,
+        JSON.stringify({
+          scripts: {
+            start: "node src/index.js",
+          },
+        })
+      );
+      fs.writeFileSync(
+        join(cwd, "config.json"),
+        JSON.stringify({
+          token: answers.token,
+        })
+      );
+
       log(good(`Installing ${answers.framework}`));
-      exec(`npm i ${answers.framework.toLowerCase()}`, { cwd: cwd });
+      exec(
+        `npm i ${answers.framework.toLowerCase()} --save`,
+        { cwd: cwd },
+        () => {
+          log(good(`Installed ${answers.framework}`));
+        }
+      );
+
+      var indexCode = [
+        "const Discord = require('discord.js')",
+        "\r\n",
+        "var config = require('./config.json')",
+        "const client = new Discord.Client()",
+        "\r\n",
+        "client.login(config.token)",
+      ];
+
+      fs.writeFileSync(`${join(cwd, "src/index.js")}`, indexCode.join(`\r\n`));
     }
   })
   .catch((e: Error) => {
