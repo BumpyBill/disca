@@ -36,13 +36,7 @@ inquirer
       name: "framework",
       message: "Framework:",
       default: 0,
-      choices: ["Discord.JS", "Eris"],
-    },
-    {
-      type: "checkbox",
-      name: "features",
-      message: "Features:",
-      choices: ["Command Handler"],
+      choices: ["Discord.JS"],
     },
     {
       type: "password",
@@ -53,15 +47,15 @@ inquirer
   .then(async (answers: any) => {
     log(good(`Installing dotenv`));
 
-    exec(`npm i dotenv --save`, { cwd });
+    await exec(`npm i dotenv --save`, { cwd });
 
     log(good(`Installing ${answers.framework}`));
 
-    exec(`npm i ${answers.framework.toLowerCase()} --save`, { cwd: cwd });
+    await exec(`npm i ${answers.framework.toLowerCase()} --save`, { cwd: cwd });
 
     log(good(`Creating start scripts`));
 
-    fs.writeFileSync(
+    await fs.writeFileSync(
       `${join(cwd, "package.json")}`,
       JSON.stringify({
         scripts: {
@@ -72,68 +66,26 @@ inquirer
 
     log(good(`Adding env file`));
 
-    fs.writeFileSync(join(cwd, ".env"), `BOT_TOKEN=${answers.token}`);
+    await fs.writeFileSync(join(cwd, ".env"), `BOT_TOKEN=${answers.token}`);
 
     log(good(`Creating source folder`));
 
-    fs.mkdirSync(join(cwd, "src"));
+    await fs.mkdirSync(join(cwd, "src"));
 
     log(good(`Creating index file`));
 
-    fs.writeFileSync(
+    await fs.writeFileSync(
       join(cwd, `src/index.${answers.language === "JavaScript" ? "js" : "ts"}`),
-      fs
-        .readFileSync(
-          join(
-            __dirname,
-            "../",
-            `Templates/${answers.framework}/BASE.${
-              answers.language === "JavaScript" ? "js" : "ts"
-            }.txt`
-          )
+      fs.readFileSync(
+        join(
+          __dirname,
+          "../",
+          `Templates/${answers.framework}/BASE.${
+            answers.language === "JavaScript" ? "js" : "ts"
+          }.txt`
         )
-        .replace("<-TOKEN->", answers.token)
+      )
     );
-
-    answers.features.forEach(async (element: string) => {
-      switch (element) {
-        case "Command Handler":
-          log(good(`Creating command handler`));
-          await inquirer
-            .prompt([
-              {
-                name: "prefix",
-                message: "Prefix:",
-              },
-            ])
-            .then(async (res: any) => {
-              fs.mkdirSync(join(cwd, "src/classes"));
-
-              fs.writeFileSync(
-                join(
-                  cwd,
-                  `src/classes/command_handler.${
-                    answers.language === "JavaScript" ? "js" : "ts"
-                  }`
-                ),
-                fs
-                  .readFileSync(
-                    join(
-                      __dirname,
-                      "../",
-                      `Templates/${answers.framework}/COMMAND_HANDLER.${
-                        answers.language === "JavaScript" ? "js" : "ts"
-                      }.txt`
-                    )
-                  )
-                  .replace("<-PREFIX->", res.prefix)
-              );
-            });
-          break;
-        default:
-          break;
-      }
-    });
 
     log(good("Finished"));
   })
