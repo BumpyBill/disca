@@ -50,7 +50,7 @@ inquirer
       message: "Token:",
     },
   ])
-  .then((answers: any) => {
+  .then(async (answers: any) => {
     if (answers.language == "JavaScript") {
       fs.writeFileSync(
         `${join(cwd, "package.json")}`,
@@ -78,15 +78,17 @@ inquirer
 
       var indexCode = [
         "const Discord = require('discord.js')",
-        "\r\n",
+        "",
         "var config = require('./config.json')",
         "const client = new Discord.Client()",
-        "\r\n",
+        "",
         "client.login(config.token)",
       ];
 
       fs.mkdirSync(join(cwd, "src"));
       fs.writeFileSync(`${join(cwd, "src/index.js")}`, indexCode.join(`\r\n`));
+
+      log(good("Finished"));
     }
   })
   .catch((e: Error) => {
