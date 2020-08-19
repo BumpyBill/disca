@@ -51,45 +51,47 @@ inquirer
     },
   ])
   .then(async (answers: any) => {
-    if (answers.language == "JavaScript") {
-      fs.writeFileSync(
-        `${join(cwd, "package.json")}`,
-        JSON.stringify({
-          scripts: {
-            start: "node src/index.js",
-          },
-        })
-      );
-      fs.writeFileSync(
-        join(cwd, "config.json"),
-        JSON.stringify({
-          token: answers.token,
-        })
-      );
+    exec(`npm i dotenv --save`, { cwd: cwd }, () => {
+      log(good(`Installed dotenv`));
+    });
 
-      log(good(`Installing ${answers.framework}`));
-      exec(
-        `npm i ${answers.framework.toLowerCase()} --save`,
-        { cwd: cwd },
-        () => {
-          log(good(`Installed ${answers.framework}`));
-        }
-      );
+    fs.writeFileSync(
+      `${join(cwd, "package.json")}`,
+      JSON.stringify({
+        scripts: {
+          start: "node src/index.js",
+        },
+      })
+    );
+    fs.writeFileSync(join(cwd, ".env"), `BOT_TOKEN=${answers.token}`);
 
-      var indexCode = [
-        "const Discord = require('discord.js')",
-        "",
-        "var config = require('./config.json')",
-        "const client = new Discord.Client()",
-        "",
-        "client.login(config.token)",
-      ];
+    log(good(`Installing ${answers.framework}`));
+    exec(
+      `npm i ${answers.framework.toLowerCase()} --save`,
+      { cwd: cwd },
+      () => {
+        log(good(`Installed ${answers.framework}`));
+      }
+    );
 
-      fs.mkdirSync(join(cwd, "src"));
-      fs.writeFileSync(`${join(cwd, "src/index.js")}`, indexCode.join(`\r\n`));
+    fs.mkdirSync(join(cwd, "src"));
+    fs.writeFileSync(
+      `${join(
+        cwd,
+        `src/index.${answers.language === "JavaScript" ? "js" : "ts"}`
+      )}`,
+      fs.readFileSync(
+        join(
+          cwd,
+          `Templates/Base/${answers.framework}/${
+            answers.language === "JavaScript" ? "js" : "ts"
+          }.txt`,
+          "utf8"
+        )
+      )
+    );
 
-      log(good("Finished"));
-    }
+    log(good("Finished"));
   })
   .catch((e: Error) => {
     if (e) log(error(e));
