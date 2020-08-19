@@ -74,27 +74,22 @@ inquirer
 
     fs.writeFileSync(join(cwd, ".env"), `BOT_TOKEN=${answers.token}`);
 
-    log(good(`Creating source directory`));
-
-    fs.mkdirSync(join(cwd, "src"));
-
     log(good(`Creating index file`));
 
     fs.writeFileSync(
-      `${join(
-        cwd,
-        `src/index.${answers.language === "JavaScript" ? "js" : "ts"}`
-      )}`,
-      fs.readFileSync(
-        join(
-          cwd,
-          `Templates/Base/${answers.framework}/${
-            answers.language === "JavaScript" ? "js" : "ts"
-          }.txt`,
-          "utf8"
-        )
-      )
+      join(cwd, `src/index.${answers.language === "JavaScript" ? "js" : "ts"}`),
+      "D:<"
     );
+
+    /*
+    fs.readFileSync(
+      `Templates/Base/${answers.framework}/${
+        answers.language === "JavaScript" ? "js" : "ts"
+      }.txt`,
+
+      "utf8"
+    );
+    */
 
     log(good("Finished"));
   })
