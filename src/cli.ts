@@ -74,9 +74,11 @@ inquirer
 
     fs.writeFileSync(join(cwd, ".env"), `BOT_TOKEN=${answers.token}`);
 
-    log(good(`Creating index file`));
+    log(good(`Creating source folder`));
 
     fs.mkdirSync(join(cwd, "src"));
+
+    log(good(`Creating index file`));
 
     fs.writeFileSync(
       join(cwd, `src/index.${answers.language === "JavaScript" ? "js" : "ts"}`),
