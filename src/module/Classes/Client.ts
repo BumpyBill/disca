@@ -9,6 +9,5 @@ export default class Client extends Discord.Client {
     this.config = {
       prefix: prefix,
     };
-    this.commands = new Discord.Collection();
   }
 }

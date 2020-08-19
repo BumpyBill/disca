@@ -1,6 +1,9 @@
-import dotenv from "dotenv".confg();
+import dotenv from "dotenv";
+dotenv.config()
 
 import { Client } from "disca";
+import Discord from "discord.js";
+
 const client = new Client("!");
 
 client.login(client.config.token);

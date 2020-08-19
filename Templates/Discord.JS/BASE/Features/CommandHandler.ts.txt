@@ -1,0 +1,15 @@
+import { CommandHandler } from "disca";
+
+const commands = new CommandHandler(client, "commands");
+
+commands.RegisterCommand({
+  name: "ping",
+  aliases: ["test"],
+  permissions: {
+    bot: ["SEND_MESSAGES"],
+    user: [],
+  },
+  execute(message: Discord.Message, client: Client, args: string[]) {
+    message.channel.send("Pong!");
+  },
+});

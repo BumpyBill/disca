@@ -1,2 +1,3 @@
 import Client from "./Classes/Client";
-export { Client };
+import CommandHandler from "./Classes/CommandHandler";
+export { Client, CommandHandler };

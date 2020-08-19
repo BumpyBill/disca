@@ -39,6 +39,13 @@ inquirer
       choices: ["Discord.JS"],
     },
     {
+      type: "checkbox",
+      name: "features",
+      message: "Features:",
+      default: 0,
+      choices: ["Command Handler"],
+    },
+    {
       type: "password",
       name: "token",
       message: "Token:",
@@ -49,9 +56,13 @@ inquirer
 
     await exec(`npm i dotenv --save`, { cwd });
 
+    log(good(`Installing disca`));
+
+    await exec(`npm i disca --save`, { cwd });
+
     log(good(`Installing ${answers.framework}`));
 
-    await exec(`npm i ${answers.framework.toLowerCase()} --save`, { cwd: cwd });
+    await exec(`npm i ${answers.framework.toLowerCase()} --save`, { cwd });
 
     log(good(`Creating start scripts`));
 
@@ -74,17 +85,38 @@ inquirer
 
     log(good(`Creating index file`));
 
+    var indexCode = fs.readFileSync(
+      join(
+        __dirname,
+        "../",
+        `Templates/${answers.framework}/BASE/BASE.${
+          answers.language === "JavaScript" ? "js" : "ts"
+        }.txt`
+      ),
+      "utf8"
+    );
+
+    log(good(`Starting creation of extra features`));
+
+    if (answers.features.includes("Command Handler")) {
+      log(good(`Creating command handler`));
+      indexCode +=
+        "\r\n" +
+        fs.readFileSync(
+          join(
+            __dirname,
+            "../",
+            `Templates/${answers.framework}/BASE/Features/CommandHandler.${
+              answers.language === "JavaScript" ? "js" : "ts"
+            }.txt`
+          ),
+          "utf8"
+        );
+    }
+
     await fs.writeFileSync(
       join(cwd, `src/index.${answers.language === "JavaScript" ? "js" : "ts"}`),
-      fs.readFileSync(
-        join(
-          __dirname,
-          "../",
-          `Templates/${answers.framework}/BASE.${
-            answers.language === "JavaScript" ? "js" : "ts"
-          }.txt`
-        )
-      )
+      indexCode
     );
 
     log(good("Finished"));

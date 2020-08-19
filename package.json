@@ -1,7 +1,8 @@
 {
   "name": "disca",
-  "version": "0.0.0132",
+  "version": "0.0.014",
   "description": "A Discord.JS Project Builder",
+  "main": "dist/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/BumpyBill/disca.git"
