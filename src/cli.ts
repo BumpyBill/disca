@@ -1,9 +1,11 @@
 #!/usr/bin/env node
 
 import chalk from "chalk";
-import { exec } from "child_process";
 import fs from "fs";
 import { join } from "path";
+
+import util from "util";
+const exec = util.promisify(require("child_process").exec);
 
 var cwd = process.cwd();
 
@@ -69,6 +71,9 @@ inquirer
     await fs.writeFileSync(
       `${join(cwd, "package.json")}`,
       JSON.stringify({
+        main: `${answers.language == "JavaScript" ? "src" : "dist"}/index.${
+          answers.language === "JavaScript" ? "js" : "ts"
+        }`,
         scripts: {
           start: "node src/index.js",
         },
