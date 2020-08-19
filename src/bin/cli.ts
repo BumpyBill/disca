@@ -85,6 +85,7 @@ inquirer
         "client.login(config.token)",
       ];
 
+      fs.mkdirSync(join(cwd, "src"));
       fs.writeFileSync(`${join(cwd, "src/index.js")}`, indexCode.join(`\r\n`));
     }
   })
