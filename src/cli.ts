@@ -51,9 +51,15 @@ inquirer
     },
   ])
   .then(async (answers: any) => {
-    exec(`npm i dotenv --save`, { cwd: cwd }, () => {
-      log(good(`Installed dotenv`));
-    });
+    log(good(`Installing dotenv`));
+
+    exec(`npm i dotenv --save`, { cwd });
+
+    log(good(`Installing ${answers.framework}`));
+
+    exec(`npm i ${answers.framework.toLowerCase()} --save`, { cwd: cwd });
+
+    log(good(`Creating start scripts`));
 
     fs.writeFileSync(
       `${join(cwd, "package.json")}`,
@@ -63,18 +69,17 @@ inquirer
         },
       })
     );
+
+    log(good(`Adding env file`));
+
     fs.writeFileSync(join(cwd, ".env"), `BOT_TOKEN=${answers.token}`);
 
-    log(good(`Installing ${answers.framework}`));
-    exec(
-      `npm i ${answers.framework.toLowerCase()} --save`,
-      { cwd: cwd },
-      () => {
-        log(good(`Installed ${answers.framework}`));
-      }
-    );
+    log(good(`Creating source directory`));
 
     fs.mkdirSync(join(cwd, "src"));
+
+    log(good(`Creating index file`));
+
     fs.writeFileSync(
       `${join(
         cwd,
