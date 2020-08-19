@@ -1,7 +1,0 @@
-import dotenv from 'dotenv';
-dotenv();
-
-import { Client } from "eris";
-const client = new Client(token);
-
-client.connect();

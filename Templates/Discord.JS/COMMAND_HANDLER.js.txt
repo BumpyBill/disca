@@ -1,0 +1,9 @@
+module.exports = function (client) {
+  client.on("ready", async (message) => {
+    const args = message.content
+      .slice("<-PREFIX->".length, message.content.length)
+      .split(/ +/);
+    const command = args.shift();
+    console.log(command);
+  });
+};

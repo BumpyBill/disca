@@ -82,16 +82,58 @@ inquirer
 
     fs.writeFileSync(
       join(cwd, `src/index.${answers.language === "JavaScript" ? "js" : "ts"}`),
-      fs.readFileSync(
-        join(
-          __dirname,
-          "../",
-          `Templates/Base/${answers.framework}/${
-            answers.language === "JavaScript" ? "js" : "ts"
-          }.txt`
+      fs
+        .readFileSync(
+          join(
+            __dirname,
+            "../",
+            `Templates/${answers.framework}/BASE.${
+              answers.language === "JavaScript" ? "js" : "ts"
+            }.txt`
+          )
         )
-      )
+        .replace("<-TOKEN->", answers.token)
     );
+
+    answers.features.forEach(async (element: string) => {
+      switch (element) {
+        case "Command Handler":
+          log(good(`Creating command handler`));
+          await inquirer
+            .prompt([
+              {
+                name: "prefix",
+                message: "Prefix:",
+              },
+            ])
+            .then(async (res: any) => {
+              fs.mkdirSync(join(cwd, "src/classes"));
+
+              fs.writeFileSync(
+                join(
+                  cwd,
+                  `src/classes/command_handler.${
+                    answers.language === "JavaScript" ? "js" : "ts"
+                  }`
+                ),
+                fs
+                  .readFileSync(
+                    join(
+                      __dirname,
+                      "../",
+                      `Templates/${answers.framework}/COMMAND_HANDLER.${
+                        answers.language === "JavaScript" ? "js" : "ts"
+                      }.txt`
+                    )
+                  )
+                  .replace("<-PREFIX->", res.prefix)
+              );
+            });
+          break;
+        default:
+          break;
+      }
+    });
 
     log(good("Finished"));
   })

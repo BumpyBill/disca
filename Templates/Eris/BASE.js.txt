@@ -1,0 +1,7 @@
+const dotenv = require("dotenv");
+dotenv();
+
+const { Client } = require("eris");
+const client = new Client("<-TOKEN->");
+
+client.connect();

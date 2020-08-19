@@ -1,0 +1,11 @@
+import { Client, Message } from "discord.js";
+
+export async function CommandHandler(client: Client) {
+  client.on("ready", async (message: Message) => {
+    const args = message.content
+      .slice("<-PREFIX->".length, message.content.length)
+      .split(/ +/);
+    const command = args.shift();
+    console.log(command);
+  });
+}

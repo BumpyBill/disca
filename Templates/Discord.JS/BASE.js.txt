@@ -1,7 +1,7 @@
-const dotenv = require('dotenv');
+const dotenv = require("dotenv");
 dotenv();
 
 const { Client } = require("discord.js");
 const client = new Client();
 
-client.login(token);
+client.login("<-TOKEN->");
