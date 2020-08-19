@@ -76,20 +76,20 @@ inquirer
 
     log(good(`Creating index file`));
 
+    fs.mkdirSync(join(cwd, "src"));
+
     fs.writeFileSync(
       join(cwd, `src/index.${answers.language === "JavaScript" ? "js" : "ts"}`),
-      "D:<"
+      fs.readFileSync(
+        join(
+          __dirname,
+          "../",
+          `Templates/Base/${answers.framework}/${
+            answers.language === "JavaScript" ? "js" : "ts"
+          }.txt`
+        )
+      )
     );
-
-    /*
-    fs.readFileSync(
-      `Templates/Base/${answers.framework}/${
-        answers.language === "JavaScript" ? "js" : "ts"
-      }.txt`,
-
-      "utf8"
-    );
-    */
 
     log(good("Finished"));
   })
