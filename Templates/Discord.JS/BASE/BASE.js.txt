@@ -1,6 +1,4 @@
 require("dotenv").config();
 const { Client } = require("disca");
 
-const client = new Client("!");
-
-client.login(process.env.BOT_TOKEN);
+const client = new Client();

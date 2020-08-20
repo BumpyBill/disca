@@ -4,4 +4,4 @@ import { Client } from "disca";
 
 const client = new Client();
 
-client.login(process.env.BOT_TOKEN);
+

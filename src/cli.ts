@@ -32,7 +32,13 @@ inquirer
       type: "list",
       name: "language",
       message: "Language:",
-      choices: ["JS", "TS"],
+      choices: ["JavaScript", "TypeScript"],
+    },
+    {
+      type: "checkbox",
+      name: "features",
+      message: "Features:",
+      choices: ["Command Handler"],
     },
     {
       type: "password",
@@ -44,10 +50,10 @@ inquirer
     // Scripts
     log(good(`Creating Scripts`));
     var packageJSON: packageJSON = {
-      main: answers.language == "JS" ? "src/index.js" : "dist/index.js",
+      main: answers.language == "JavaScript" ? "src/index.js" : "dist/index.js",
       scripts: {
         start: `node ${
-          answers.language == "JS" ? "src/index.js" : "dist/index.js"
+          answers.language == "JavaScript" ? "src/index.js" : "dist/index.js"
         }`,
       },
     };
@@ -83,7 +89,9 @@ inquirer
 
       await fs.writeFileSync(
         join(cwd, "tsconfig.json"),
-        require(join(__dirname, "../", `Templates/TypeScript/tsconfig.json`))
+        JSON.stringify(
+          require(join(__dirname, "../", `Templates/TypeScript/tsconfig.json`))
+        )
       );
     }
 
@@ -104,13 +112,31 @@ inquirer
         __dirname,
         "../",
         `Templates/Discord.JS/BASE/BASE.${
-          answers.language == "JS" ? "js" : "ts"
+          answers.language == "JavaScript" ? "js" : "ts"
         }.txt`
       ),
       "utf8"
     );
+
+    if (answers.features.includes("Command Handler")) {
+      indexCode +=
+        "\r\n" +
+        fs.readFileSync(
+          join(
+            __dirname,
+            "../",
+            `Templates/Discord.JS/BASE/Features/CommandHandler/CommandHandler.${
+              answers.language == "JavaScript" ? "js" : "ts"
+            }.txt`
+          ),
+          "utf8"
+        );
+    }
+
+    indexCode += "\r\nclient.login(process.env.BOT_TOKEN);";
+
     await fs.writeFileSync(
-      join(cwd, `src/index.${answers.language == "JS" ? "js" : "ts"}`),
+      join(cwd, `src/index.${answers.language == "JavaScript" ? "js" : "ts"}`),
       indexCode
     );
 

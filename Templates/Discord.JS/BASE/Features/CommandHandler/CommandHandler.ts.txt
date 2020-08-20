@@ -1,0 +1,5 @@
+// Command Handler
+
+import { CommandHandler } from "disca";
+
+const commands = new CommandHandler(client)

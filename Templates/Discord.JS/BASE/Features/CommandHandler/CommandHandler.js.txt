@@ -1,0 +1,5 @@
+// Command Handler
+
+const { CommandHandler } = require("disca");
+
+const commands = new CommandHandler(client)
