@@ -1,6 +1,6 @@
 {
   "name": "disca",
-  "version": "0.0.0151",
+  "version": "0.0.0152",
   "description": "A Discord.JS Project Builder",
   "main": "dist/module/index.js",
   "repository": {
@@ -34,7 +34,6 @@
     "util": "^0.12.3"
   },
   "devDependencies": {
-    "@types/node": "^14.6.0",
-    "discord.js": "^12.3.1"
+    "@types/node": "^14.6.0"
   }
 }

@@ -3,6 +3,7 @@
 import chalk from "chalk";
 import fs from "fs";
 import { join } from "path";
+import packageJSON from "./interfaces/packageJSON";
 
 import util from "util";
 const exec = util.promisify(require("child_process").exec);
@@ -27,12 +28,36 @@ var inquirer = require("inquirer");
 inquirer
   .prompt([
     {
+      type: "list",
+      name: "language",
+      message: "Language:",
+      choices: ["JS", "TS"],
+    },
+    {
       type: "password",
       name: "token",
       message: "Token:",
     },
   ])
   .then(async (answers: any) => {
+    log(good(`Creating Scripts`));
+
+    var packageJSON: packageJSON = {
+      main: answers.language == "JS" ? "src/index.js" : "dist/index.js",
+      scripts: {
+        start: `node ${
+          answers.language == "JS" ? "src/index.js" : "dist/index.js"
+        }`,
+      },
+    };
+
+    if (answers.language == "TS") packageJSON.scripts.build = "tsc -p .";
+
+    await fs.writeFileSync(
+      `${join(cwd, "package.json")}`,
+      JSON.stringify(packageJSON)
+    );
+
     log(good(`Installing Dotenv`));
 
     await exec(`npm i dotenv --save`, { cwd });
@@ -45,19 +70,21 @@ inquirer
 
     await exec(`npm i discord.js --save`, { cwd });
 
-    log(good(`Creating Start Scripts`));
+    if (answers.language == "TS") {
+      log(good("Initializing TypeScript"));
 
-    await fs.writeFileSync(
-      `${join(cwd, "package.json")}`,
-      JSON.stringify({
-        main: `src/index.js`,
-        scripts: {
-          start: "node src/index.js",
-        },
-      })
-    );
+      await fs.writeFileSync(
+        join(cwd, "tsconfig.json"),
+        JSON.stringify(
+          fs.readFileSync(
+            join(__dirname, "../", `Templates/TypeScript/tsconfig.json`),
+            "utf8"
+          )
+        )
+      );
+    }
 
-    log(good(`Adding env file`));
+    log(good(`Adding ".env" File`));
 
     await fs.writeFileSync(join(cwd, ".env"), `BOT_TOKEN=${answers.token}`);
 
@@ -68,11 +95,20 @@ inquirer
     log(good(`Creating Index File`));
 
     var indexCode = fs.readFileSync(
-      join(__dirname, "../", `Templates/Discord.JS/BASE/BASE.js.txt`),
+      join(
+        __dirname,
+        "../",
+        `Templates/Discord.JS/BASE/BASE.${
+          answers.language == "JS" ? "js" : "ts"
+        }.txt`
+      ),
       "utf8"
     );
 
-    await fs.writeFileSync(join(cwd, `src/index.js`), indexCode);
+    await fs.writeFileSync(
+      join(cwd, `src/index.${answers.language == "JS" ? "js" : "ts"}`),
+      indexCode
+    );
 
     log(good("Finished"));
 
