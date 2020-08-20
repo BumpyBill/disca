@@ -27,27 +27,6 @@ var inquirer = require("inquirer");
 inquirer
   .prompt([
     {
-      type: "list",
-      name: "language",
-      message: "Language:",
-      default: 0,
-      choices: ["JavaScript", "TypeScript"],
-    },
-    {
-      type: "list",
-      name: "framework",
-      message: "Framework:",
-      default: 0,
-      choices: ["Discord.JS"],
-    },
-    {
-      type: "checkbox",
-      name: "features",
-      message: "Features:",
-      default: 0,
-      choices: ["Command Handler"],
-    },
-    {
       type: "password",
       name: "token",
       message: "Token:",
@@ -62,18 +41,16 @@ inquirer
 
     await exec(`npm i disca --save`, { cwd });
 
-    log(good(`Installing ${answers.framework}`));
+    log(good(`Installing Discord.JS`));
 
-    await exec(`npm i ${answers.framework.toLowerCase()} --save`, { cwd });
+    await exec(`npm i discord.js --save`, { cwd });
 
     log(good(`Creating start scripts`));
 
     await fs.writeFileSync(
       `${join(cwd, "package.json")}`,
       JSON.stringify({
-        main: `${answers.language == "JavaScript" ? "src" : "dist"}/index.${
-          answers.language === "JavaScript" ? "js" : "ts"
-        }`,
+        main: `src/index.js`,
         scripts: {
           start: "node src/index.js",
         },
@@ -91,40 +68,16 @@ inquirer
     log(good(`Creating index file`));
 
     var indexCode = fs.readFileSync(
-      join(
-        __dirname,
-        "../",
-        `Templates/${answers.framework}/BASE/BASE.${
-          answers.language === "JavaScript" ? "js" : "ts"
-        }.txt`
-      ),
+      join(__dirname, "../", `Templates/Discord.JS/BASE/BASE.js.txt`),
       "utf8"
     );
 
-    log(good(`Starting creation of extra features`));
-
-    if (answers.features.includes("Command Handler")) {
-      log(good(`Creating command handler`));
-      indexCode +=
-        "\r\n" +
-        fs.readFileSync(
-          join(
-            __dirname,
-            "../",
-            `Templates/${answers.framework}/BASE/Features/CommandHandler.${
-              answers.language === "JavaScript" ? "js" : "ts"
-            }.txt`
-          ),
-          "utf8"
-        );
-    }
-
-    await fs.writeFileSync(
-      join(cwd, `src/index.${answers.language === "JavaScript" ? "js" : "ts"}`),
-      indexCode
-    );
+    await fs.writeFileSync(join(cwd, `src/index.js`), indexCode);
 
     log(good("Finished"));
+
+    if (!/[MN][A-Za-z\d]{23}\.[\w-]{6}\.[\w-]{27}/.test(answers.token))
+      log(warning("Invalid Token"));
   })
   .catch((e: Error) => {
     if (e) log(error(e));
