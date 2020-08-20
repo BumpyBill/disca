@@ -33,11 +33,11 @@ inquirer
     },
   ])
   .then(async (answers: any) => {
-    log(good(`Installing dotenv`));
+    log(good(`Installing Dotenv`));
 
     await exec(`npm i dotenv --save`, { cwd });
 
-    log(good(`Installing disca`));
+    log(good(`Installing Disca`));
 
     await exec(`npm i disca --save`, { cwd });
 
@@ -45,7 +45,7 @@ inquirer
 
     await exec(`npm i discord.js --save`, { cwd });
 
-    log(good(`Creating start scripts`));
+    log(good(`Creating Start Scripts`));
 
     await fs.writeFileSync(
       `${join(cwd, "package.json")}`,
@@ -61,11 +61,11 @@ inquirer
 
     await fs.writeFileSync(join(cwd, ".env"), `BOT_TOKEN=${answers.token}`);
 
-    log(good(`Creating source folder`));
+    log(good(`Creating Source Folder`));
 
     await fs.mkdirSync(join(cwd, "src"));
 
-    log(good(`Creating index file`));
+    log(good(`Creating Index File`));
 
     var indexCode = fs.readFileSync(
       join(__dirname, "../", `Templates/Discord.JS/BASE/BASE.js.txt`),
