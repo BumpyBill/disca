@@ -40,8 +40,8 @@ inquirer
     },
   ])
   .then(async (answers: any) => {
+    // Scripts
     log(good(`Creating Scripts`));
-
     var packageJSON: packageJSON = {
       main: answers.language == "JS" ? "src/index.js" : "dist/index.js",
       scripts: {
@@ -50,25 +50,26 @@ inquirer
         }`,
       },
     };
-
     if (answers.language == "TS") packageJSON.scripts.build = "tsc -p .";
-
     await fs.writeFileSync(
       `${join(cwd, "package.json")}`,
       JSON.stringify(packageJSON)
     );
 
+    // Dotenv
     log(good(`Installing Dotenv`));
-
     await exec(`npm i dotenv --save`, { cwd });
 
+    // Disca
     log(good(`Installing Disca`));
-
     await exec(`npm i disca --save`, { cwd });
 
+    // Framework
     log(good(`Installing Discord.JS`));
-
     await exec(`npm i discord.js --save`, { cwd });
+
+    log(good("Installing @types/node"));
+    await exec(`npm i @types/node --save-dev`, { cwd });
 
     if (answers.language == "TS") {
       log(good("Initializing TypeScript"));
@@ -77,34 +78,33 @@ inquirer
         join(cwd, "tsconfig.json"),
         JSON.stringify(
           fs.readFileSync(
-            join(__dirname, "../", `Templates/TypeScript/tsconfig.json`),
+            join(__dirname, ".../", `Templates/TypeScript/tsconfig.json`),
             "utf8"
           )
         )
       );
     }
 
+    // .env
     log(good(`Adding ".env" File`));
-
     await fs.writeFileSync(join(cwd, ".env"), `BOT_TOKEN=${answers.token}`);
 
+    // /src
     log(good(`Creating Source Folder`));
-
     await fs.mkdirSync(join(cwd, "src"));
 
+    // index file
     log(good(`Creating Index File`));
-
     var indexCode = fs.readFileSync(
       join(
         __dirname,
-        "../",
+        ".../",
         `Templates/Discord.JS/BASE/BASE.${
           answers.language == "JS" ? "js" : "ts"
         }.txt`
       ),
       "utf8"
     );
-
     await fs.writeFileSync(
       join(cwd, `src/index.${answers.language == "JS" ? "js" : "ts"}`),
       indexCode
@@ -112,7 +112,7 @@ inquirer
 
     log(good("Finished"));
 
-    if (!/[MN][A-Za-z\d]{23}\.[\w-]{6}\.[\w-]{27}/.test(answers.token))
+    if (!/[MN][A-Za-z\d]{23}\.[\w-]{6}\.[\w-]{27}/g.test(answers.token))
       log(warning("Invalid Token"));
   })
   .catch((e: Error) => {
