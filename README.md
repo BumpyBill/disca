@@ -20,7 +20,7 @@ And complete the following prompts.
 
 #### TypeScript
 
-Disca does support TypeScript, but it requires the NPM package "typescript" to be inslatted globably
+Disca does support TypeScript, but it requires the NPM package "typescript" to be installed globably
 
 ```bash
 npm i typescript -g
