@@ -14,6 +14,7 @@ var log = console.log;
 const error = chalk.bold.red;
 const warning = chalk.keyword("orange");
 const good = chalk.greenBright;
+const separate = chalk.gray(`#${"=".repeat(16)}#`);
 
 log(
   chalk.red.bgYellow(
@@ -56,6 +57,8 @@ inquirer
       JSON.stringify(packageJSON)
     );
 
+    log(separate);
+
     // Dotenv
     log(good(`Installing Dotenv`));
     await exec(`npm i dotenv --save`, { cwd });
@@ -68,22 +71,23 @@ inquirer
     log(good(`Installing Discord.JS`));
     await exec(`npm i discord.js --save`, { cwd });
 
+    log(separate);
+
     log(good("Installing @types/node"));
     await exec(`npm i @types/node --save-dev`, { cwd });
+
+    log(separate);
 
     if (answers.language == "TS") {
       log(good("Initializing TypeScript"));
 
       await fs.writeFileSync(
         join(cwd, "tsconfig.json"),
-        JSON.stringify(
-          fs.readFileSync(
-            join(__dirname, ".../", `Templates/TypeScript/tsconfig.json`),
-            "utf8"
-          )
-        )
+        require(join(__dirname, "../", `Templates/TypeScript/tsconfig.json`))
       );
     }
+
+    log(separate);
 
     // .env
     log(good(`Adding ".env" File`));
@@ -98,7 +102,7 @@ inquirer
     var indexCode = fs.readFileSync(
       join(
         __dirname,
-        ".../",
+        "../",
         `Templates/Discord.JS/BASE/BASE.${
           answers.language == "JS" ? "js" : "ts"
         }.txt`
@@ -109,6 +113,8 @@ inquirer
       join(cwd, `src/index.${answers.language == "JS" ? "js" : "ts"}`),
       indexCode
     );
+
+    log(separate);
 
     log(good("Finished"));
 

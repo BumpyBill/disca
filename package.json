@@ -1,6 +1,6 @@
 {
   "name": "disca",
-  "version": "0.0.01521",
+  "version": "0.0.0153",
   "description": "A Discord.JS Project Builder",
   "main": "dist/lib/index.js",
   "repository": {
@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/BumpyBill/disca#readme",
   "bin": {
-    "disca": "dist/cli/cli.js"
+    "disca": "dist/cli.js"
   },
   "scripts": {
     "build": "tsc -p ."
