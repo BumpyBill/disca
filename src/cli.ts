@@ -57,7 +57,8 @@ inquirer
         }`,
       },
     };
-    if (answers.language == "TS") packageJSON.scripts.build = "tsc -p .";
+    if (answers.language == "TypeScript")
+      packageJSON.scripts.build = "tsc -p .";
     await fs.writeFileSync(
       `${join(cwd, "package.json")}`,
       JSON.stringify(packageJSON)
@@ -82,9 +83,8 @@ inquirer
     log(good("Installing @types/node"));
     await exec(`npm i @types/node --save-dev`, { cwd });
 
-    log(separate);
-
-    if (answers.language == "TS") {
+    if (answers.language == "TypeScript") {
+      log(separate);
       log(good("Initializing TypeScript"));
 
       await fs.writeFileSync(
