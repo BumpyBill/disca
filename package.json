@@ -21,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/BumpyBill/disca/issues"
   },
-  "homepage": "https://github.com/BumpyBill/disca#readme",
+  "homepage": "https://bumpybill.github.io/disca/#/",
   "bin": {
     "disca": "dist/cli.js"
   },
