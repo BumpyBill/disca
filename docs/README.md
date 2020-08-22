@@ -28,8 +28,6 @@ npm i typescript -g
 
 ### Documentation
 
-> All Documentation Is In JavaScript
-
 #### Client
 
 ```ts
@@ -73,7 +71,7 @@ const fs = require("fs");
 
 const commands = new CommandHandler(client);
 
-const commandFiles = fs.readdirSync("src/Commands");
+const commandFiles = fs.readdirSync(join(process.cwd(), "dist/Commands"));
 
 for (const file of commandFiles) {
   const command = require(`../Commands/${file}`);
