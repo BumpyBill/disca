@@ -1,12 +1,25 @@
+![Logo](assets/banner.png)
+
 # disca
 
 A Discord.JS Project Builder
+
+---
+
+![Discord Banner](https://discordapp.com/api/guilds/746582390373220352/widget.png?style=banner3)
+![NPM Downloads](https://img.shields.io/npm/dw/disca?style=flat-square)
+![License](https://img.shields.io/npm/l/disca?style=flat-square)
+![Versiob](https://img.shields.io/npm/v/disca?style=flat-square)
+
+---
 
 ### Installation
 
 ```bash
 npm i disca -g
 ```
+
+---
 
 ### Usage
 
@@ -25,6 +38,8 @@ Disca does support TypeScript, but it requires the NPM package "typescript" to b
 ```bash
 npm i typescript -g
 ```
+
+---
 
 ### Documentation
 
