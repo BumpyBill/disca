@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>scripts | disca</title>
+	<title>CommandPermissions | disca</title>
 	<meta name="description" content="Documentation for disca">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,13 +56,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_interfaces_packagejson_.html">&quot;interfaces/packageJSON&quot;</a>
+					<a href="../modules/_interfaces_command_.html">&quot;interfaces/Command&quot;</a>
 				</li>
 				<li>
-					<a href="_interfaces_packagejson_.scripts.html">scripts</a>
+					<a href="_interfaces_command_.commandpermissions.html">CommandPermissions</a>
 				</li>
 			</ul>
-			<h1>Interface scripts</h1>
+			<h1>Interface CommandPermissions</h1>
 		</div>
 	</div>
 </header>
@@ -73,7 +73,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">scripts</span>
+						<span class="target">CommandPermissions</span>
 					</li>
 				</ul>
 			</section>
@@ -84,8 +84,8 @@
 						<section class="tsd-index-section tsd-is-not-exported">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_interfaces_packagejson_.scripts.html#build" class="tsd-kind-icon">build</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_interfaces_packagejson_.scripts.html#start" class="tsd-kind-icon">start</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_interfaces_command_.commandpermissions.html#bot" class="tsd-kind-icon">bot</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_interfaces_command_.commandpermissions.html#user" class="tsd-kind-icon">user</a></li>
 							</ul>
 						</section>
 					</div>
@@ -94,22 +94,22 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-					<a name="build" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> build</h3>
-					<div class="tsd-signature tsd-kind-icon">build<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
+					<a name="bot" class="tsd-anchor"></a>
+					<h3>bot</h3>
+					<div class="tsd-signature tsd-kind-icon">bot<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/BumpyBill/disca/blob/98c159f/src/interfaces/packageJSON.ts#L8">src/interfaces/packageJSON.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/BumpyBill/disca/blob/c7b8cc7/src/lib/interfaces/Command.ts#L15">src/lib/interfaces/Command.ts:15</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-					<a name="start" class="tsd-anchor"></a>
-					<h3>start</h3>
-					<div class="tsd-signature tsd-kind-icon">start<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="user" class="tsd-anchor"></a>
+					<h3>user</h3>
+					<div class="tsd-signature tsd-kind-icon">user<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/BumpyBill/disca/blob/98c159f/src/interfaces/packageJSON.ts#L7">src/interfaces/packageJSON.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/BumpyBill/disca/blob/c7b8cc7/src/lib/interfaces/Command.ts#L16">src/lib/interfaces/Command.ts:16</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -122,40 +122,34 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="../modules/_cli_.html">&quot;cli&quot;</a>
+						<a href="../modules/_classes_commandhandler_.html">&quot;classes/<wbr>Command<wbr>Handler&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_classes_client_.html">&quot;classes/client&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_interfaces_clientconfig_.html">&quot;interfaces/<wbr>Client<wbr>Config&quot;</a>
 					</li>
 					<li class="current tsd-kind-module">
-						<a href="../modules/_interfaces_packagejson_.html">&quot;interfaces/packageJSON&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/_lib_classes_commandhandler_.html">&quot;lib/classes/<wbr>Command<wbr>Handler&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/_lib_classes_client_.html">&quot;lib/classes/client&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/_lib_interfaces_clientconfig_.html">&quot;lib/interfaces/<wbr>Client<wbr>Config&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/_lib_interfaces_command_.html">&quot;lib/interfaces/<wbr>Command&quot;</a>
+						<a href="../modules/_interfaces_command_.html">&quot;interfaces/<wbr>Command&quot;</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="_interfaces_packagejson_.packagejson.html" class="tsd-kind-icon">packageJSON</a>
+						<a href="_interfaces_command_.command.html" class="tsd-kind-icon">Command</a>
 					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-module tsd-is-not-exported">
-						<a href="_interfaces_packagejson_.scripts.html" class="tsd-kind-icon">scripts</a>
+						<a href="_interfaces_command_.commandpermissions.html" class="tsd-kind-icon">Command<wbr>Permissions</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="_interfaces_packagejson_.scripts.html#build" class="tsd-kind-icon">build</a>
+								<a href="_interfaces_command_.commandpermissions.html#bot" class="tsd-kind-icon">bot</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="_interfaces_packagejson_.scripts.html#start" class="tsd-kind-icon">start</a>
+								<a href="_interfaces_command_.commandpermissions.html#user" class="tsd-kind-icon">user</a>
 							</li>
 						</ul>
 					</li>
@@ -173,9 +167,6 @@
 			<ul class="tsd-legend">
 				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
 				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
