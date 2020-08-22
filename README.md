@@ -6,7 +6,7 @@ A Discord.JS Project Builder
 
 ---
 
-## ![Discord Banner](https://discordapp.com/api/guilds/746582390373220352/widget.png?style=banner3)
+## [![Discord Banner](https://discordapp.com/api/guilds/746582390373220352/widget.png?style=banner3)](឵https://discord.gg/Pcuav2y)
 
 ![NPM Downloads](https://img.shields.io/npm/dw/disca?style=flat-square)
 ![License](https://img.shields.io/npm/l/disca?style=flat-square)
