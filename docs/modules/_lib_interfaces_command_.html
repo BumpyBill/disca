@@ -3,17 +3,17 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>disca</title>
+	<title>&quot;lib/interfaces/Command&quot; | disca</title>
 	<meta name="description" content="Documentation for disca">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="assets/css/main.css">
+	<link rel="stylesheet" href="../assets/css/main.css">
 </head>
 <body>
 <header>
 	<div class="tsd-page-toolbar">
 		<div class="container">
 			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
 					<div class="field">
 						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
 						<input id="tsd-search-field" type="text" />
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="index.html" class="title">disca</a>
+					<a href="../index.html" class="title">disca</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -53,90 +53,68 @@
 		<div class="container">
 			<ul class="tsd-breadcrumb">
 				<li>
-					<a href="globals.html">Globals</a>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="_lib_interfaces_command_.html">&quot;lib/interfaces/Command&quot;</a>
 				</li>
 			</ul>
-			<h1>disca</h1>
+			<h1>Module &quot;lib/interfaces/Command&quot;</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<div class="tsd-panel tsd-typography">
-				<a href="#disca" id="disca" style="color: inherit; text-decoration: none;">
-					<h1>disca</h1>
-				</a>
-				<p>A Discord.JS Project Builder</p>
-				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
-					<h3>Installation</h3>
-				</a>
-				<pre><code class="language-bash">npm i disca -g</code></pre>
-				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
-					<h3>Usage</h3>
-				</a>
-				<a href="#creating-a-project" id="creating-a-project" style="color: inherit; text-decoration: none;">
-					<h4>Creating A Project</h4>
-				</a>
-				<pre><code class="language-bash">disca</code></pre>
-				<p>And complete the following prompts.</p>
-				<a href="#typescript" id="typescript" style="color: inherit; text-decoration: none;">
-					<h4>TypeScript</h4>
-				</a>
-				<p>Disca does support TypeScript, but it requires the NPM package &quot;typescript&quot; to be installed globally</p>
-				<pre><code class="language-bash">npm i typescript -g</code></pre>
-				<a href="#documentation" id="documentation" style="color: inherit; text-decoration: none;">
-					<h3>Documentation</h3>
-				</a>
-				<a href="#command-handler" id="command-handler" style="color: inherit; text-decoration: none;">
-					<h4>Command Handler</h4>
-				</a>
-				<a href="#basic-example" id="basic-example" style="color: inherit; text-decoration: none;">
-					<h5>Basic Example</h5>
-				</a>
-				<pre><code class="language-js"><span class="hljs-keyword">const</span> commands = <span class="hljs-keyword">new</span> CommandHandler(client);
-
-commands.RegisterCommand({
-  <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;ping&quot;</span>,
-  <span class="hljs-attr">aliases</span>: [],
-  <span class="hljs-attr">permissions</span>: {
-    <span class="hljs-attr">bot</span>: [<span class="hljs-string">&quot;SEND_MESSSAGES&quot;</span>],
-    <span class="hljs-attr">user</span>: [],
-  },
-  <span class="hljs-attr">execute</span>: <span class="hljs-function">(<span class="hljs-params">message, client, args</span>) =&gt;</span> {
-    message.channel.send(<span class="hljs-string">&quot;Pong!&quot;</span>);
-  },
-});</code></pre>
-			</div>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Interfaces</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/_lib_interfaces_command_.command.html" class="tsd-kind-icon">Command</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-module tsd-is-not-exported"><a href="../interfaces/_lib_interfaces_command_.commandpermissions.html" class="tsd-kind-icon">Command<wbr>Permissions</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 			<nav class="tsd-navigation primary">
 				<ul>
 					<li class="globals  ">
-						<a href="globals.html"><em>Globals</em></a>
+						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="modules/_cli_.html">&quot;cli&quot;</a>
+						<a href="_cli_.html">&quot;cli&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="modules/_interfaces_packagejson_.html">&quot;interfaces/packageJSON&quot;</a>
+						<a href="_interfaces_packagejson_.html">&quot;interfaces/packageJSON&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="modules/_lib_classes_commandhandler_.html">&quot;lib/classes/<wbr>Command<wbr>Handler&quot;</a>
+						<a href="_lib_classes_commandhandler_.html">&quot;lib/classes/<wbr>Command<wbr>Handler&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="modules/_lib_classes_client_.html">&quot;lib/classes/client&quot;</a>
+						<a href="_lib_classes_client_.html">&quot;lib/classes/client&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="modules/_lib_interfaces_clientconfig_.html">&quot;lib/interfaces/<wbr>Client<wbr>Config&quot;</a>
+						<a href="_lib_interfaces_clientconfig_.html">&quot;lib/interfaces/<wbr>Client<wbr>Config&quot;</a>
 					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_lib_interfaces_command_.html">&quot;lib/interfaces/<wbr>Command&quot;</a>
+					<li class="current tsd-kind-module">
+						<a href="_lib_interfaces_command_.html">&quot;lib/interfaces/<wbr>Command&quot;</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="../interfaces/_lib_interfaces_command_.command.html" class="tsd-kind-icon">Command</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-not-exported">
+						<a href="../interfaces/_lib_interfaces_command_.commandpermissions.html" class="tsd-kind-icon">Command<wbr>Permissions</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
@@ -162,6 +140,6 @@ commands.RegisterCommand({
 	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
 </div>
 <div class="overlay"></div>
-<script src="assets/js/main.js"></script>
+<script src="../assets/js/main.js"></script>
 </body>
 </html>

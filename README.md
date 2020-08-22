@@ -26,4 +26,24 @@ Disca does support TypeScript, but it requires the NPM package "typescript" to b
 npm i typescript -g
 ```
 
-> We recommend you install @types/node when working with TypeScript in NodeJS
+### Documentation
+
+#### Command Handler
+
+##### Basic Example
+
+```js
+const commands = new CommandHandler(client);
+
+commands.RegisterCommand({
+  name: "ping",
+  aliases: [],
+  permissions: {
+    bot: ["SEND_MESSSAGES"],
+    user: [],
+  },
+  execute: (message, client, args) => {
+    message.channel.send("Pong!");
+  },
+});
+```
