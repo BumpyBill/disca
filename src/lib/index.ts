@@ -1,3 +1,3 @@
-import Client from "./classes/client";
+import Client from "./classes/Client";
 import CommandHandler from "./classes/CommandHandler";
 export { Client, CommandHandler };

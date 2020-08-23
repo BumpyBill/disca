@@ -1,6 +1,6 @@
 import Discord from "discord.js";
 import Command from "../interfaces/Command";
-import Client from "./client";
+import Client from "./Client";
 import chalk from "chalk";
 
 export default class CommandHandler {
