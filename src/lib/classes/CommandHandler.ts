@@ -6,12 +6,13 @@ import chalk from "chalk";
 export default class CommandHandler {
   private client: Client;
   public commands: any;
-  constructor(client: Client) {
+  constructor(client: Client, logger: boolean = false) {
     this.client = client;
     this.commands = new Discord.Collection();
 
     var log = console.log;
     const warning = chalk.keyword("orange");
+    const good = chalk.greenBright;
 
     client.on("message", (message) => {
       if (!this.client.config.prefix) {
@@ -53,6 +54,8 @@ export default class CommandHandler {
         message.channel.send("Insufficient Permissions For Bot");
         return;
       }
+
+      log(good(`Command > ${command} > Args > ${args}`));
 
       try {
         checkcmd.execute(message, client, args);

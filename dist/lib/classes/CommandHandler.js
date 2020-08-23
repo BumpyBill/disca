@@ -6,11 +6,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const discord_js_1 = __importDefault(require("discord.js"));
 const chalk_1 = __importDefault(require("chalk"));
 class CommandHandler {
-    constructor(client) {
+    constructor(client, logger = false) {
         this.client = client;
         this.commands = new discord_js_1.default.Collection();
         var log = console.log;
         const warning = chalk_1.default.keyword("orange");
+        const good = chalk_1.default.greenBright;
         client.on("message", (message) => {
             if (!this.client.config.prefix) {
                 log(warning("(Client > Config > Prefix) Not Set"));
@@ -37,6 +38,7 @@ class CommandHandler {
                 message.channel.send("Insufficient Permissions For Bot");
                 return;
             }
+            log(good(`Command > ${command} > Args > ${args}`));
             try {
                 checkcmd.execute(message, client, args);
             }
